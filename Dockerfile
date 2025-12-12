@@ -6,10 +6,10 @@ RUN apk add --no-cache ca-certificates curl
 
 WORKDIR /app
 
+COPY . .
+
 RUN go mod init github.com/Liyouran-center/ech-wk
 RUN go mod tidy
-
-COPY . .
 
 RUN curl -L -o chn_ip.txt https://raw.githubusercontent.com/mayaxcn/china-ip-list/master/chn_ip.txt || true && \
     curl -L -o chn_ip_v6.txt https://raw.githubusercontent.com/mayaxcn/china-ip-list/master/chn_ip_v6.txt || true
