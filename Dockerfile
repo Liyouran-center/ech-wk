@@ -7,8 +7,9 @@ RUN apk add --no-cache ca-certificates curl
 WORKDIR /app
 
 # 复制 go mod 相关文件（启用 Go module 缓存）
-COPY go.mod go.sum ./
 RUN go mod download
+COPY go.mod ./
+RUN if [ -f "./go.sum" ]; then go mod download; fi
 
 # 复制源代码
 COPY . .
