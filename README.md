@@ -5,6 +5,21 @@
 
 跨平台的 ECH Workers 代理客户端，支持 Windows、macOS 和 Linux（ARM/x86），提供图形界面和命令行两种使用方式。
 
+## 相对于原版的区别
+添加了Docker中Arm64的支持
+docker-compose.yml文件参考, 请自行修改相关选项
+```bash
+services:
+  ech-workers:
+    image: ghcr.io/liyouran-center/ech-wk:latest
+    # 容器重启策略
+    restart: unless-stopped
+    user: "65532:65532"
+    command: ["--f", "woek.work.workers.dev:443", "--l", "0.0.0.0:30000", "--token", "token", "--ip", "1.1.1.1"]
+    ports:
+      - "30000:30000"
+```
+
 ## 📋 目录
 
 - [功能特性](#功能特性)
